@@ -10,17 +10,18 @@ h,w, _ = ori_img.shape
 rate = h/512
 img = cv2.resize(ori_img, (int(w/rate), 512))
 cv2.imshow("Lenna", img)
-cv2.waitKey(0)
+#cv2.waitKey(0)
 
 #set the filter
-box_filter = 1/10000 * np.ones((100,100))
+box_filter = 1/9 * np.ones((3,3))
 
 h,w, _ = img.shape
-out = np.zeros((h-99,w-99,3))
-for i in range(h-99):
-  for j in range(w-99):
-    for k in range(3):
-      out[i,j,k] = np.sum(img[i:i+100, j:j+100,k] * box_filter)
+out = np.zeros((h-2,w-2,3))
+for i in range(h-2):
+  for j in range(w-2):
+    out[i, j] = np.sum(box_filter * img[i:i+3, j:j+3, :], (0, 1))
+    mask = img[i+1, j+1] - np.sum(box_filter * img[i:i+3, j:j+3, :], (0,1))
+    out[i, j] = img[i+1, j+1] + mask * 0.5
 
 cv2.imshow("Lenna", out)
 cv2.waitKey(0)
