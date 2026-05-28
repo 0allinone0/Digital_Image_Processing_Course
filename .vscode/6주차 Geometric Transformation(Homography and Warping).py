@@ -13,7 +13,7 @@ def mouse_callback(event, x, y, flags, params):
             points.append((x, y))
             print(f"Point {len(points)}: ({x}, {y})")
 
-img_path = 'billboard.jpg'  #이미지 path
+img_path = 'fuuny.jpg'  #이미지 path
 
 cv2.namedWindow("Select 4 Points")   #이름이 Select 4 Points 창을 만듦
 cv2.setMouseCallback("Select 4 Points", mouse_callback)   #Select 4 Points 창에서 마우스 이벤트가 발생하면 mouse_callback함수 호출
@@ -47,7 +47,7 @@ print("Final selected points:", points)
 #####################
 #Warping을 이용해서 이미지를 티비에 넣기
 
-lenna = cv2.imread("Lenna.png")   #붙여넣응ㄹ 원본이미지    
+lenna = cv2.imread("suhyeok.jpg")   #붙여넣응ㄹ 원본이미지    
 
 h, w, _ = lenna.shape   #이미지 크기 가져오기(height, width, channel)
 h_, w_, _ = dst_img.shape   #배경 이미지 크기 가져오기
